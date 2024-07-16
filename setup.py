@@ -23,7 +23,7 @@ setup(
         "fire",
         "editdistance",
         "soundfile",
-        "sklearn",
+        "scikit-learn",
         "transformers",
         "datasets",
         "seqeval",
