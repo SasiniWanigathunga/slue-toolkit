@@ -16,11 +16,16 @@ def get_label_lst(label_str, label_type):
     """
     Convert list of list string into list of tuples
     """
-    if label_str == "None" or label_str == "[]":
+    if label_str == "None" or label_str == "[]" or pd.isna(label_str):
         return []
     tag_map = raw_to_combined_tag_map
     label_lst = []
-    ner_labels_lst = ast.literal_eval(label_str)
+    try:
+        ner_labels_lst = ast.literal_eval(label_str)
+    except ValueError as e:
+        print(f"Error evaluating label_str: {label_str}, error: {e}")
+        return []  # Return an empty list on error
+
     for item in ner_labels_lst:
         label, start_id, length = item
         if label_type == "combined":
